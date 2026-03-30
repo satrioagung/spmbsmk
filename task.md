@@ -1,0 +1,27 @@
+# SPMB SMK Online - Enrollment System Task List
+
+- [x] Project Initialization
+    - [x] Initialize Next.js app with Tailwind CSS and shadcn/ui.
+    - [x] Set up Supabase project and client integration.
+    - [x] Configure environment variables.
+- [x] Database Schema Setup (Supabase)
+    - [x] Create `profiles` table (auth).
+    - [x] Create `registrations` table (extracted OCR data, status, ranking).
+    - [x] Create `announcements` table.
+- [x] Student Portal
+    - [x] Landing Page UI.
+    - [x] Authentication (Supabase Auth).
+    - [x] Status Dashboard.
+    - [x] PDF Card Generation.
+- [x] Registration Flow (Core Feature)
+    - [x] Step 1: Initial Simple Form (Name, NISN, Origin School).
+    - [x] Step 2: Document Scanning UI (Camera access, overlay frame - no cloud storage).
+    - [x] Step 3: OCR Integration (tesseract.js) & Data Extraction.
+    - [x] Step 4: Preview & Edit Mode (React Hook Form + Zod).
+    - [x] Step 5: Final Submission to Supabase.
+- [x] Admin Portal
+    - [x] Admin Dashboard UI & Protected Route.
+    - [x] Real-time Statistics.
+    - [x] Document Verification Interface.
+    - [x] Automated Ranking System.
+    - [x] Announcement Management.
