@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import AdminRegistrationsTable from './AdminRegistrationsTable'
+import DownloadDataButton from './DownloadDataButton'
 import { Users, FileCheck2, Clock, CheckCircle } from 'lucide-react'
 
 export default async function AdminDashboard() {
@@ -20,9 +21,12 @@ export default async function AdminDashboard() {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">Ringkasan Dasbor</h1>
-        <p className="text-slate-400 mt-1">Pantau statistik pendaftaran dan verifikasi pendaftar baru.</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-white">Ringkasan Dasbor</h1>
+          <p className="text-slate-400 mt-1">Pantau statistik pendaftaran dan verifikasi pendaftar baru.</p>
+        </div>
+        <DownloadDataButton registrations={regs} />
       </div>
 
       {/* Stats Grid */}
@@ -77,7 +81,7 @@ export default async function AdminDashboard() {
       <Card className="bg-slate-950 border-slate-800 text-slate-100 shadow-xl shadow-black/20 mt-8">
         <CardHeader>
           <CardTitle className="text-xl">Antrean Pendaftaran</CardTitle>
-          <CardDescription className="text-slate-400">Tinjau dokumen yang diekstrak OCR dan verifikasi siswa.</CardDescription>
+          <CardDescription className="text-slate-400">Tinjau seluruh data dan verifikasi siswa baru yang telah mendaftar.</CardDescription>
         </CardHeader>
         <CardContent>
           <AdminRegistrationsTable registrations={regs} />

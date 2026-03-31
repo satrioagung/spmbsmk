@@ -40,12 +40,12 @@ export default async function DashboardPage() {
                 <div className="text-center px-4">
                   <h3 className="font-semibold text-slate-900 text-base">Belum Mendaftar</h3>
                   <p className="text-slate-500 text-xs mt-1 max-w-[250px] mx-auto leading-relaxed">
-                    Anda perlu menyelesaikan formulir pendaftaran berbantuan AI yang memindai Kartu Keluarga (KK) Anda.
+                    Anda perlu mengisi formulir pendaftaran dan melengkapi data berdasarkan Kartu Keluarga (KK) Anda.
                   </p>
                 </div>
                 <Link href="/enroll">
                   <Button className="bg-blue-600 hover:bg-blue-700 rounded-full px-6 mt-2 shadow-lg shadow-blue-500/20 text-sm h-10">
-                    Mulai Pemindaian AI
+                    Mulai Pendadfataran
                   </Button>
                 </Link>
               </div>

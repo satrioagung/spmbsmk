@@ -3,10 +3,11 @@
 import { useState } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, XCircle, Loader2 } from 'lucide-react'
+import { CheckCircle, XCircle, Loader2, Eye } from 'lucide-react'
 import { updateRegistrationStatus } from './actions'
 import { toast } from 'sonner'
 import { format } from 'date-fns'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
 export default function AdminRegistrationsTable({ registrations }: { registrations: any[] }) {
   const [loadingId, setLoadingId] = useState<string | null>(null)
@@ -70,9 +71,59 @@ export default function AdminRegistrationsTable({ registrations }: { registratio
                   </span>
                 </TableCell>
                 <TableCell className="text-right">
-                  <div className="flex justify-end gap-2">
+                  <div className="flex justify-end gap-2 items-center">
+                    {/* Dialog Detail */}
+                    <Dialog>
+                      <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors h-8 px-3 bg-blue-500/10 border-blue-500/20 text-blue-400 hover:bg-blue-500/20">
+                        <Eye className="w-4 h-4 mr-1" /> Detail
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl bg-white border border-slate-200">
+                        <DialogHeader>
+                          <DialogTitle className="text-slate-900">Detail Pendaftar: {reg.profiles?.full_name}</DialogTitle>
+                          <DialogDescription>
+                            Informasi lengkap pendaftaran yang disubmit pada {format(new Date(reg.created_at), 'PPP')}
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="max-h-[60vh] overflow-y-auto pr-4 space-y-6 mt-4">
+                          <div className="space-y-4">
+                            <h4 className="font-semibold text-slate-800 border-b pb-2">Identitas Siswa</h4>
+                            <div className="grid grid-cols-2 gap-y-3 text-sm">
+                              <div><span className="text-slate-500 block">Nama Lengkap</span> <span className="font-medium text-slate-900">{reg.profiles?.full_name}</span></div>
+                              <div><span className="text-slate-500 block">Asal Sekolah</span> <span className="font-medium text-slate-900">{reg.origin_school}</span></div>
+                              <div><span className="text-slate-500 block">NISN</span> <span className="font-medium text-slate-900">{reg.nisn}</span></div>
+                              <div><span className="text-slate-500 block">NIK</span> <span className="font-medium text-slate-900">{reg.nik}</span></div>
+                              <div><span className="text-slate-500 block">Nomor KK</span> <span className="font-medium text-slate-900">{reg.kk_number}</span></div>
+                              <div><span className="text-slate-500 block">Tempat, Tanggal Lahir</span> <span className="font-medium text-slate-900">{reg.birthplace}, {reg.birthdate}</span></div>
+                              <div><span className="text-slate-500 block">Agama</span> <span className="font-medium text-slate-900">{reg.religion}</span></div>
+                            </div>
+                          </div>
+
+                          <div className="space-y-4">
+                            <h4 className="font-semibold text-slate-800 border-b pb-2">Data Orang Tua</h4>
+                            <div className="grid grid-cols-2 gap-y-4 text-sm">
+                              <div className="space-y-2 p-3 bg-slate-50 rounded-lg">
+                                <span className="font-bold text-slate-700 block mb-2">Ayah</span>
+                                <div><span className="text-slate-500 block text-xs">Nama</span> <span className="font-medium text-slate-900">{reg.father_name || '-'}</span></div>
+                                <div><span className="text-slate-500 block text-xs">NIK</span> <span className="font-medium text-slate-900">{reg.father_nik || '-'}</span></div>
+                                <div><span className="text-slate-500 block text-xs">Pekerjaan</span> <span className="font-medium text-slate-900">{reg.father_job || '-'}</span></div>
+                                <div><span className="text-slate-500 block text-xs">Pendidikan</span> <span className="font-medium text-slate-900">{reg.father_education || '-'}</span></div>
+                              </div>
+                              <div className="space-y-2 p-3 bg-slate-50 rounded-lg">
+                                <span className="font-bold text-slate-700 block mb-2">Ibu</span>
+                                <div><span className="text-slate-500 block text-xs">Nama</span> <span className="font-medium text-slate-900">{reg.mother_name || '-'}</span></div>
+                                <div><span className="text-slate-500 block text-xs">NIK</span> <span className="font-medium text-slate-900">{reg.mother_nik || '-'}</span></div>
+                                <div><span className="text-slate-500 block text-xs">Pekerjaan</span> <span className="font-medium text-slate-900">{reg.mother_job || '-'}</span></div>
+                                <div><span className="text-slate-500 block text-xs">Pendidikan</span> <span className="font-medium text-slate-900">{reg.mother_education || '-'}</span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+
+                    {/* Action Buttons */}
                     {loadingId === reg.id ? (
-                      <Loader2 className="w-5 h-5 animate-spin text-slate-500" />
+                      <Loader2 className="w-5 h-5 animate-spin text-slate-500 ml-2" />
                     ) : reg.status === 'pending' ? (
                       <>
                         <Button
@@ -93,7 +144,7 @@ export default function AdminRegistrationsTable({ registrations }: { registratio
                         </Button>
                       </>
                     ) : (
-                      <span className="text-xs text-slate-500 font-medium">Selesai</span>
+                      <span className="text-xs text-slate-500 font-medium ml-2 min-w-[60px] text-center">Selesai</span>
                     )}
                   </div>
                 </TableCell>
