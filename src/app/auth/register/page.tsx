@@ -33,6 +33,10 @@ export default async function RegisterPage({ searchParams }: { searchParams: Pro
               <Label htmlFor="password">Kata Sandi</Label>
               <Input id="password" name="password" type="password" required className="h-11 rounded-xl" minLength={6} />
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="confirm_password">Konfirmasi Kata Sandi</Label>
+              <Input id="confirm_password" name="confirm_password" type="password" required className="h-11 rounded-xl" minLength={6} />
+            </div>
           </div>
 
           <Button type="submit" className="w-full h-11 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30">
