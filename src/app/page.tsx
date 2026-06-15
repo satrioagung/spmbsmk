@@ -34,6 +34,12 @@ export default async function LandingPage() {
 
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center text-center px-4 pt-16 pb-20">
+        {/* Logo */}
+        <img
+          src="/smk.png"
+          alt="Logo SMK Bintang Sembilan"
+          className="h-24 w-24 object-contain mb-6"
+        />
         <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-800 mb-6 shadow-sm">
           <span className="flex h-2 w-2 rounded-full bg-blue-600 mr-2 animate-pulse"></span>
           Pendaftaran 2026/2027 Dibuka

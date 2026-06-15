@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SPMB SMK Bintang Sembilan",
   description: "Sistem Penerimaan Murid Baru SMK Bintang Sembilan",
+  icons: {
+    icon: "/smk.png",
+    shortcut: "/smk.png",
+    apple: "/smk.png",
+  },
 };
 
 export default function RootLayout({
